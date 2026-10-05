@@ -1,0 +1,31 @@
+:host {
+  display: block;
+}
+
+.skill-chip {
+  opacity: 0;
+  transform: translateY(10px) scale(0.94);
+  color: rgb(var(--muted));
+  background: rgb(var(--accent) / 0.07);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, color 0.3s ease;
+}
+
+.skill-chip--in {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.skill-chip:hover {
+  border-color: rgb(var(--accent) / 0.6);
+  color: rgb(var(--accent));
+  transform: translateY(-2px) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-chip {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

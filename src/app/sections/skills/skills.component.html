@@ -1,0 +1,50 @@
+<section id="skills" class="section">
+  <div class="container-x">
+    <app-section-heading
+      [eyebrow]="content().ui.skills.eyebrow"
+      [title]="content().ui.skills.title"
+      [highlight]="content().ui.skills.highlight"
+      [subtitle]="content().ui.skills.subtitle"
+    />
+
+    <div #skillGrid class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      @for (group of content().skills; track group.title; let i = $index) {
+        <article
+          appTilt
+          [max]="5"
+          class="card-surface group relative flex flex-col overflow-hidden p-6"
+          data-aos="fade-up"
+        >
+          <span
+            class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            style="background: radial-gradient(260px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgb(var(--accent) / 0.14), transparent 60%)"
+            aria-hidden="true"
+          ></span>
+
+          <header class="relative mb-5 flex items-center gap-3">
+            <span
+              class="grid h-10 w-10 place-items-center rounded-xl border border-soft"
+              [style.color]="group.accent"
+              [style.background]="'color-mix(in srgb, ' + group.accent + ' 14%, transparent)'"
+            >
+              <app-icon [name]="group.icon" [size]="19" />
+            </span>
+            <h3 class="font-display text-lg font-semibold">{{ group.title }}</h3>
+          </header>
+
+          <ul class="relative flex flex-wrap gap-2">
+            @for (skill of group.skills; track skill; let s = $index) {
+              <li
+                class="skill-chip rounded-full border border-soft px-3 py-1.5 text-xs font-medium"
+                [class.skill-chip--in]="revealed()"
+                [style.transition-delay]="chipDelay(i, s)"
+              >
+                {{ skill }}
+              </li>
+            }
+          </ul>
+        </article>
+      }
+    </div>
+  </div>
+</section>

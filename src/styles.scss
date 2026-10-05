@@ -1,0 +1,211 @@
+/* AOS stylesheet is loaded via angular.json */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   Design tokens
+--------------------------------------------------------------------------- */
+:root {
+  --bg: 5 6 10;
+  --surface: 15 16 25;
+  --border: 255 255 255;
+  --text: 226 232 240;
+  --muted: 148 163 184;
+  --accent: 124 92 255;
+  --accent-cyan: 34 211 238;
+  color-scheme: dark;
+}
+
+:root.light {
+  --bg: 248 249 252;
+  --surface: 255 255 255;
+  --border: 15 23 42;
+  --text: 15 23 42;
+  --muted: 71 85 105;
+  --accent: 99 66 255;
+  --accent-cyan: 6 148 162;
+  color-scheme: light;
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--accent) / 0.5) transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  @apply font-sans antialiased;
+  margin: 0;
+  overflow-x: hidden;
+  background-color: rgb(var(--bg));
+  color: rgb(var(--text));
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background: rgb(var(--accent) / 0.4);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(rgb(var(--accent)), rgb(var(--accent-cyan)));
+  border-radius: 999px;
+  border: 2px solid rgb(var(--bg));
+}
+
+/* ---------------------------------------------------------------------------
+   Reusable component classes
+--------------------------------------------------------------------------- */
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+  }
+
+  .section {
+    @apply relative py-20 md:py-28;
+  }
+
+  .glass {
+    background: rgb(var(--surface) / 0.6);
+    border: 1px solid rgb(var(--border) / 0.08);
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+  }
+
+  .card-surface {
+    @apply glass rounded-2xl;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.4s ease,
+      box-shadow 0.4s ease;
+  }
+
+  .card-surface:hover {
+    transform: translateY(-6px);
+    border-color: rgb(var(--accent) / 0.45);
+    box-shadow: 0 24px 60px -30px rgb(var(--accent) / 0.9);
+  }
+
+  .gradient-text {
+    @apply bg-accent-gradient bg-clip-text text-transparent;
+    background-size: 220% 220%;
+    animation: gradient-x 8s ease infinite;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium uppercase tracking-[0.18em];
+    background: rgb(var(--accent) / 0.1);
+    border: 1px solid rgb(var(--accent) / 0.25);
+    color: rgb(var(--accent));
+  }
+
+  .btn {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold
+      transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply btn text-white;
+    background: linear-gradient(120deg, rgb(var(--accent)), rgb(var(--accent-cyan)));
+    box-shadow: 0 12px 34px -14px rgb(var(--accent));
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 44px -14px rgb(var(--accent));
+  }
+
+  .btn-ghost {
+    @apply btn;
+    border: 1px solid rgb(var(--border) / 0.14);
+    color: rgb(var(--text));
+    background: rgb(var(--surface) / 0.4);
+  }
+  .btn-ghost:hover {
+    border-color: rgb(var(--accent) / 0.6);
+    transform: translateY(-2px);
+  }
+
+  .chip {
+    @apply rounded-full px-3 py-1 text-xs font-medium;
+    background: rgb(var(--accent) / 0.1);
+    border: 1px solid rgb(var(--border) / 0.1);
+    color: rgb(var(--muted));
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Utilities
+--------------------------------------------------------------------------- */
+@layer utilities {
+  .text-muted {
+    color: rgb(var(--muted));
+  }
+  .text-accent {
+    color: rgb(var(--accent));
+  }
+  .hover-accent:hover {
+    color: rgb(var(--accent));
+  }
+  .hover-border-accent:hover {
+    border-color: rgb(var(--accent) / 0.5);
+  }
+  .bg-blob-accent {
+    background-color: rgb(var(--accent) / 0.25);
+  }
+  .bg-blob-cyan {
+    background-color: rgb(var(--accent-cyan) / 0.2);
+  }
+  .bg-blob-pink {
+    background-color: rgb(244 114 182 / 0.18);
+  }
+  .text-body {
+    color: rgb(var(--text));
+  }
+  .border-soft {
+    border-color: rgb(var(--border) / 0.1);
+  }
+  .bg-surface {
+    background-color: rgb(var(--surface) / 0.5);
+  }
+  .noise::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Accessibility: honour reduced-motion
+--------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

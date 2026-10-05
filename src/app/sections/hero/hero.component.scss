@@ -1,0 +1,12 @@
+:host {
+  display: block;
+}
+
+/* Pause the tech marquee on hover for readability */
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+pre code span {
+  transition: color 0.3s ease;
+}

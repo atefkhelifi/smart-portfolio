@@ -1,0 +1,12 @@
+:host {
+  display: contents;
+}
+
+.duration-400 {
+  transition-duration: 400ms;
+}
+
+/* Animated gradient underline on hover for desktop links */
+a:hover > span.origin-left {
+  transform: scaleX(1);
+}

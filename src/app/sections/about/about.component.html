@@ -1,0 +1,70 @@
+<section id="about" class="section">
+  <div class="container-x">
+    <app-section-heading
+      [eyebrow]="content().ui.about.eyebrow"
+      [title]="content().ui.about.title"
+      [highlight]="content().ui.about.highlight"
+      [subtitle]="content().ui.about.subtitle"
+    />
+
+    <div class="grid gap-10 lg:grid-cols-[1fr_0.85fr] lg:items-start">
+      <!-- narrative -->
+      <div class="space-y-5" data-aos="fade-right">
+        @for (paragraph of content().profile.bio; track $index) {
+          <p class="text-base leading-relaxed text-muted sm:text-lg">{{ paragraph }}</p>
+        }
+
+        <div class="grid gap-4 pt-2 sm:grid-cols-2">
+          <div class="rounded-2xl border border-soft bg-surface p-4">
+            <p class="flex items-center gap-2 text-xs uppercase tracking-wider text-muted">
+              <app-icon name="pin" [size]="15" /> {{ content().ui.about.locationLabel }}
+            </p>
+            <p class="mt-1.5 text-sm font-medium">{{ content().profile.location }}</p>
+          </div>
+          <div class="rounded-2xl border border-soft bg-surface p-4">
+            <p class="flex items-center gap-2 text-xs uppercase tracking-wider text-muted">
+              <app-icon name="mail" [size]="15" /> {{ content().ui.about.emailLabel }}
+            </p>
+            <a
+              class="hover-accent mt-1.5 block truncate text-sm font-medium transition-colors"
+              [href]="'mailto:' + content().profile.email"
+              >{{ content().profile.email }}</a
+            >
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-2 pt-2">
+          @for (tool of content().tools; track tool) {
+            <span class="chip">{{ tool }}</span>
+          }
+        </div>
+      </div>
+
+      <!-- highlights -->
+      <div class="grid gap-4" data-aos="fade-left">
+        @for (item of content().ui.about.highlights; track item.title) {
+          <article appTilt class="card-surface group relative overflow-hidden p-5">
+            <span
+              class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              style="background: radial-gradient(240px circle at var(--spot-x, 50%) var(--spot-y, 50%), rgb(var(--accent) / 0.16), transparent 65%)"
+              aria-hidden="true"
+            ></span>
+
+            <div class="relative flex items-start gap-4">
+              <span
+                class="grid h-11 w-11 shrink-0 place-items-center rounded-xl text-white shadow-glow"
+                style="background: linear-gradient(120deg, rgb(var(--accent)), rgb(var(--accent-cyan)))"
+              >
+                <app-icon [name]="item.icon" [size]="20" />
+              </span>
+              <div>
+                <h3 class="font-display text-base font-semibold">{{ item.title }}</h3>
+                <p class="mt-1.5 text-sm leading-relaxed text-muted">{{ item.text }}</p>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </div>
+</section>

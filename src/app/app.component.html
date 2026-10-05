@@ -1,0 +1,14 @@
+<!-- ambient background -->
+<div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
+  <div class="bg-blob-accent absolute -top-40 left-1/4 h-96 w-96 rounded-full blur-[140px] opacity-60"></div>
+  <div class="bg-blob-cyan absolute bottom-0 right-1/4 h-96 w-96 rounded-full blur-[140px] opacity-50"></div>
+</div>
+
+<app-navbar />
+
+<main id="main-content">
+  <router-outlet />
+</main>
+
+<app-footer />
+<app-back-to-top />
