@@ -36,7 +36,9 @@ export const CONTENT_FR: PortfolioContent = {
     availability: 'Ouvert aux nouvelles opportunités',
     email: 'khelifiatef@outlook.fr',
     phone: '(+216) 52 343 232',
-    resumeUrl: '/assets/resume.pdf',
+    // Relative on purpose: it resolves against <base href>, so the link keeps
+    // working when the site is served from a sub-path (e.g. GitHub Pages).
+    resumeUrl: 'assets/resume.pdf',
     socials: [
       { label: 'GitHub', url: 'https://github.com/atefkhelifi', icon: 'github' },
       { label: 'LinkedIn', url: 'https://www.linkedin.com/in/atef-khelifi', icon: 'linkedin' },
