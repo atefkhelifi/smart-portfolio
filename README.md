@@ -1,7 +1,11 @@
 # Smart Portfolio — Atef Khelifi
 
+[![Deploy to GitHub Pages](https://github.com/atefkhelifi/smart-portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/atefkhelifi/smart-portfolio/actions/workflows/deploy.yml)
+
 A bilingual (FR / EN) animated portfolio for a fullstack engineer. Dark-first design,
 glassmorphism, scroll-driven motion, and one content file per language.
+
+**Live:** <https://atefkhelifi.github.io/smart-portfolio/>
 
 ## Stack
 
@@ -22,6 +26,35 @@ npm run build      # production build into dist/
 npm test           # unit tests (Karma + ChromeHeadless, one-shot)
 npm run test:watch # unit tests in watch mode
 ```
+
+## Deployment
+
+The site is published to **GitHub Pages** at
+<https://atefkhelifi.github.io/smart-portfolio/>.
+
+`.github/workflows/deploy.yml` builds the production bundle and publishes
+`dist/smart-portfolio/browser` on every push to `main` (and on manual dispatch).
+The badge above reflects the latest run.
+
+### Serving from a sub-path
+
+This is a *project* site, so it lives under `/<repo>/` rather than the domain root.
+That has one consequence worth remembering:
+
+- The build must use `--base-href=/smart-portfolio/` — the workflow passes it
+  explicitly. Building with the default `/` deploys broken asset paths.
+- **Asset URLs must stay relative.** A literal `/assets/resume.pdf` bypasses the
+  `<base href>` and resolves to the domain root, which 404s on a project site.
+  The content bundles therefore use `assets/resume.pdf`.
+
+Serve a sub-path locally to check this the way production does it:
+
+```bash
+npm run build -- --base-href=/smart-portfolio/
+```
+
+> On Windows, Git Bash rewrites a leading `/` in CLI arguments into a Windows
+> path. Prefix the command with `MSYS_NO_PATHCONV=1` so the base href survives.
 
 ## Content & languages
 
