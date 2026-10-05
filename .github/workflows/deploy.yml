@@ -31,8 +31,9 @@ jobs:
         run: npm ci
 
       - name: Build
-        # A project site is served from /<repo>/, so the base href must match.
-        run: npm run build -- --base-href=/smart-portfolio/
+        # Relative base href: one build works both under /<repo>/ on github.io
+        # and at the root of a custom domain. See "Serving from a sub-path".
+        run: npm run build -- --base-href=./
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

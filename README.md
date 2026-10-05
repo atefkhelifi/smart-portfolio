@@ -38,23 +38,27 @@ The badge above reflects the latest run.
 
 ### Serving from a sub-path
 
-This is a *project* site, so it lives under `/<repo>/` rather than the domain root.
-That has one consequence worth remembering:
-
-- The build must use `--base-href=/smart-portfolio/` — the workflow passes it
-  explicitly. Building with the default `/` deploys broken asset paths.
-- **Asset URLs must stay relative.** A literal `/assets/resume.pdf` bypasses the
-  `<base href>` and resolves to the domain root, which 404s on a project site.
-  The content bundles therefore use `assets/resume.pdf`.
-
-Serve a sub-path locally to check this the way production does it:
+This is a *project* site, so on GitHub's default domain it lives under `/<repo>/`,
+while a custom domain serves it from `/`. A hardcoded base href cannot satisfy
+both, so the build uses a **relative** one:
 
 ```bash
-npm run build -- --base-href=/smart-portfolio/
+npm run build -- --base-href=./
 ```
 
+That emits `<base href="./">`, so every asset resolves against the path the page
+was actually served from. One build therefore works at both
+`https://atefkhelifi.github.io/smart-portfolio/` and a custom domain root — no
+rebuild is needed when a domain is added.
+
+The same rule applies to URLs inside the app: **keep them relative.** A literal
+`/assets/resume.pdf` bypasses `<base href>` and resolves to the domain root,
+which 404s on a project site. The content bundles therefore use
+`assets/resume.pdf`.
+
 > On Windows, Git Bash rewrites a leading `/` in CLI arguments into a Windows
-> path. Prefix the command with `MSYS_NO_PATHCONV=1` so the base href survives.
+> path, so prefix the command with `MSYS_NO_PATHCONV=1` when passing an absolute
+> base href.
 
 ## Content & languages
 
