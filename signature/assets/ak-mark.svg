@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="102" height="102" role="img" aria-label="Atef Khelifi">
+  <title>Atef Khelifi</title>
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1a1d33" />
+      <stop offset="1" stop-color="#07080e" />
+    </linearGradient>
+    <linearGradient id="mark" x1="14" y1="50" x2="50" y2="14" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9d7bff" />
+      <stop offset="1" stop-color="#22d3ee" />
+    </linearGradient>
+    <radialGradient id="halo" cx="32" cy="30" r="23" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7c5cff" stop-opacity="0.28" />
+      <stop offset="1" stop-color="#7c5cff" stop-opacity="0" />
+    </radialGradient>
+    <clipPath id="tileClip">
+      <rect width="64" height="64" rx="15" />
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#tileClip)">
+    <rect width="64" height="64" fill="url(#tile)" />
+    <circle cx="32" cy="30" r="23" fill="url(#halo)" />
+  </g>
+
+  <path
+    d="M16 48 L32 16 L48 48"
+    fill="none"
+    stroke="url(#mark)"
+    stroke-width="8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <path
+    d="M25.5 37 L38.5 37"
+    fill="none"
+    stroke="url(#mark)"
+    stroke-width="8"
+    stroke-linecap="round"
+  />
+</svg>
